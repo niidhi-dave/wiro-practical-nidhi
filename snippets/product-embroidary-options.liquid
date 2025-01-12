@@ -1,0 +1,125 @@
+<script src="{{ 'product-embroidary.js' | asset_url }}" defer="defer"></script>
+
+{% if product.metafields.custom.is_embroidary_available == true %}
+  <div
+    class="embroidary-options-wrapper"
+    data-product-id="{{ product.id }}"
+    data-section-embroidary-id="embroidary-option-{{ section.id }}"
+  >
+    <div class="twcss-grid twcss-grid-cols-[auto,1fr] twcss-justify-between twcss-items-center twcss-gap-4 twcss-border twcss-py-4 twcss-rounded-lg">
+      <!-- Checkbox and Text -->
+      <div class="twcss-flex twcss-items-left twcss-items-center twcss-space-x-2">
+        <input
+          id="embroidary-option-{{ section.id }}"
+          name="toggle-product-embroidary-options"
+          type="checkbox"
+          class="toggle-options-block twcss-text-black-600 twcss-border-gray-300 twcss-rounded twcss-focus:ring-black-500"
+        >
+        <label
+          for="embroidary-option-{{ section.id }}"
+          class=" twcss-text-2xl twcss-text-gray-700"
+        >
+          Add Embroidered Name
+        </label>
+      </div>
+
+      <!-- Price -->
+      <div class="twcss-justify-self-end text-right">
+        <span class="embroidary-options-price text-sm font-medium text-gray-800">+£0</span>
+      </div>
+    </div>
+
+    {% if render_in_form == true %}
+      <div class="twcss-hidden show-embroidary-options">
+        <!-- Add up to 10 characters -->
+        <div class="twcss-space-y-4">
+          <label
+            for="embroidered-name"
+            class="twcss-block twcss-font-medium twcss-text-gray-700 twcss-my-2"
+          >
+            Add up to 10 characters
+          </label>
+          <input
+            id="embroidered-name"
+            type="text"
+            placeholder="Embroidered Name"
+            name="properties[embroidary_name]"
+            maxlength="10"
+            form="product-form-{{ section.id }}"
+            class="embroidary-name-choice twcss-mt-1 twcss-block twcss-w-full twcss-rounded-md twcss-border-gray-300 twcss-shadow-sm twcss-focus:border-blue-500 twcss-focus:ring-blue-500"
+          >
+        </div>
+
+        <div class="twcss-grid sm:twcss-grid-cols-1 md:twcss-grid-cols-2 twcss-gap-6 twcss-py-6 twcss-border twcss-rounded-lg">
+          <!-- Left Section -->
+          <div class="twcss-space-y-4">
+            {% assign options = product.metafields.custom.embroidary_options.value %}
+            <div class="twcss-my-6">
+              <p class="twcss-font-medium twcss-text-gray-700">Choose letter colour</p>
+              <div class="twcss-flex twcss-items-center twcss-space-x-6 twcss-mt-2">
+                {% for color in options.colors %}
+                  <label for="color-choice-{{ color[0] }}" class="flex items-center">
+                    <input
+                      type="radio"
+                      id="color-choice-{{ color[0] }}"
+                      name="color-choice"
+                      value="{{ color[0] }}"
+                      class="twcss-sr-only color-radio"
+                      data-color-price="{{ color[1] }}"
+                    >
+                    <div
+                      class="twcss-h-14 twcss-w-14 twcss-rounded-full twcss-border twcss-cursor-pointer !twcss-block"
+                      style="background-color: {{ color[0] }};"
+                    ></div>
+                    {{ color[0] | capitalize }}
+                  </label>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="twcss-my-6">
+              <p class="twcss-font-medium twcss-text-gray-700">Choose font</p>
+              <div class="twcss-flex twcss-space-x-4 twcss-mt-2">
+                {% for font in options.fonts %}
+                  <label for="font-choice-{{ font[0] }}" class="cursor-pointer">
+                    <input
+                      id="font-choice-{{ font[0] }}"
+                      type="radio"
+                      name="font-choice"
+                      value="{{ font[0] }}"
+                      data-font-price="{{ font[1] }}"
+                      class="twcss-sr-only font-radio"
+                    >
+                    <div
+                      class="twcss-py-3 twcss-px-6 twcss-inline-block twcss-rounded-md twcss-font-medium twcss-text-gray-700 twcss-border twcss-border-gray-300 twcss-hover:bg-gray-50 twcss-focus:ring-2 twcss-focus:ring-blue-500 twcss-focus:outline-none"
+                    >
+                      {{ font[0] | capitalize }}
+                    </div>
+                  </label>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Section -->
+          <div class="twcss-flex twcss-items-center twcss-justify-center twcss-border twcss-rounded-lg twcss-bg-gray-100 md:h-full">
+            {% comment %} <p class="twcss-text-gray-500">Mockup Image</p> {% endcomment %}
+            {% if product.metafields.product.embroidary_image %}
+              <img src="{{ product.metafields.product.embroidary_image }}" width="250" height="250">
+            {% endif %}
+          </div>
+        </div>
+        <p class="twcss-text-gray-500">Unfortunately, we cannot accept returns or exchanges on embroidered items.</p>
+      </div>
+    {% endif %}
+  </div>
+{% endif %}
+
+{%- for item in cart.items -%}
+  {%- if item.product.id == product.id -%}
+    <div
+      id="product-embroidery-options-json"
+      data-cart-properties="{{ item.properties | json }}"
+    ></div>
+  {%- endif -%}
+{%- endfor -%}
