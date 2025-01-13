@@ -628,10 +628,6 @@ video {
   grid-template-columns: auto 1fr;
 }
 
-.twcss-grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .twcss-items-center {
   align-items: center;
 }
@@ -760,20 +756,12 @@ video {
 }
 
 @media (min-width: 320px) {
-  .sm\:twcss-grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .sm\:twcss-grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 750px) {
-  .md\:twcss-grid-cols-1 {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-
   .md\:twcss-grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

@@ -46,11 +46,11 @@
             name="properties[embroidary_name]"
             maxlength="10"
             form="product-form-{{ section.id }}"
-            class="embroidary-name-choice twcss-mt-1 twcss-block twcss-w-full twcss-rounded-md twcss-border-gray-300 twcss-shadow-sm twcss-focus:border-blue-500 twcss-focus:ring-blue-500"
+            class="embroidary-name-choice twcss-mt-1 twcss-block twcss-w-full twcss-rounded-md twcss-shadow-sm twcss-focus:border-blue-500 twcss-focus:ring-blue-500"
           >
         </div>
 
-        <div class="twcss-grid sm:twcss-grid-cols-1 md:twcss-grid-cols-2 twcss-gap-6 twcss-py-6 twcss-border twcss-rounded-lg">
+        <div class="twcss-grid sm:twcss-grid-cols-1 md:twcss-grid-cols-2 twcss-gap-6 twcss-py-6 twcss-rounded-lg">
           <!-- Left Section -->
           <div class="twcss-space-y-4">
             {% assign options = product.metafields.custom.embroidary_options.value %}
@@ -68,7 +68,7 @@
                       data-color-price="{{ color[1] }}"
                     >
                     <div
-                      class="twcss-h-14 twcss-w-14 twcss-rounded-full twcss-border twcss-cursor-pointer !twcss-block"
+                      class="twcss-h-14 twcss-w-14 twcss-rounded-full twcss-cursor-pointer !twcss-block"
                       style="background-color: {{ color[0] }};"
                     ></div>
                     {{ color[0] | capitalize }}
@@ -91,7 +91,7 @@
                       class="twcss-sr-only font-radio"
                     >
                     <div
-                      class="twcss-py-3 twcss-px-6 twcss-inline-block twcss-rounded-md twcss-font-medium twcss-text-gray-700 twcss-border twcss-border-gray-300 twcss-hover:bg-gray-50 twcss-focus:ring-2 twcss-focus:ring-blue-500 twcss-focus:outline-none"
+                      class="twcss-py-3 twcss-px-6 twcss-inline-block twcss-rounded-md twcss-font-medium twcss-text-gray-700 twcss-hover:bg-gray-50 twcss-focus:ring-2 twcss-focus:ring-blue-500 twcss-focus:outline-none"
                     >
                       {{ font[0] | capitalize }}
                     </div>
